@@ -3,16 +3,18 @@ const getRandomInclusive = require('./getRandomIntInclusive');
 
 const n = parseInt(process.argv[2], 10);
 const k = parseInt(process.argv[3], 10);
-const filePathToWrite = process.argv[4];
+const minimumValue = parseInt(process.argv[4], 10);
+const maximumValue = parseInt(process.argv[5], 10);
+const filePathToWrite = process.argv[6];
 
 /**
 * @param {string} filePath
 */
 
-const generateTestInputFile = (filePath) => {
+const generateTestInputFile = (filePath, min, max) => {
   const toWrite = [];
   for (let i = 0; i < n; i++) {
-    toWrite.push(getRandomInclusive(1, 100000)); // push a random number to the array between
+    toWrite.push(getRandomInclusive(min, max));
   }
   fs.writeFile(filePath, `${n} ${k}\n${toWrite.join(' ')}`, (err) => {
     if (err) {
@@ -22,4 +24,4 @@ const generateTestInputFile = (filePath) => {
   });
 };
 
-generateTestInputFile(filePathToWrite);
+generateTestInputFile(filePathToWrite, minimumValue, maximumValue);
