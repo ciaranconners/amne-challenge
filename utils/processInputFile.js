@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+/* a utility function to asynchronously read in and format an input file */
+
 const processInputFile = (filepath, callback) => {
   fs.readFile(filepath, 'utf8', (err, data) => {
     if (err) {

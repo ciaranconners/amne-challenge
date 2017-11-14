@@ -1,3 +1,7 @@
+/* a utility function which generates test input files with for a given n & k
+  from the test-utils folder run node generateTestInputFile.js ${n} ${k} ${desiredTestFilePath}
+*/
+
 const fs = require('fs');
 const getRandomInclusive = require('./getRandomIntInclusive');
 

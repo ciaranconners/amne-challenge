@@ -1,69 +1,74 @@
+/* a utility function called by main for each k-length window
+to determine increasingSubrangeCount - decreasingSubrangeCount
+(O(window.length) time complexity) */
+
 const getWindowIncreasingSubrangeCount = (window) => {
-    let count = 0;
-    let currentRangeLength = 0;
-    let isDescending = window[0] > window[1];
-    if (window[0] === window[1]) {
-        isDescending = -1;
-    }
-    for (let i = 0; i <= window.length; i++) {
-        const currentAverage = window[i], nextAverage = window[i + 1];
+  let count = 0;
+  let currentRangeLength = 0;
+  let isDescending = window[0] > window[1];
+  if (window[0] === window[1]) {
+    isDescending = -1;
+  }
+  for (let i = 0; i <= window.length; i++) {
+    const currentAverage = window[i];
+    const nextAverage = window[i + 1];
 
-        if (isDescending === true) {
-            if (currentAverage > nextAverage) {
-                count--;
-                // console.log('inside isDescending block: ', window, count, currentAverage, nextAverage);
-                currentRangeLength++;
-            } else if (currentAverage < nextAverage) {
-                // console.log('switch to ascent');
-                isDescending = false;
-                count++;
-                // console.log('inside isDescending switch to ascent block: ', window, count, currentAverage, nextAverage, isDescending);
-                if (currentRangeLength > 1) {
-                    count--;
-                }
-                currentRangeLength = 1;
-            } else if (currentAverage === nextAverage) {
-                // console.log('inside isDescending switch to neutral block: ', window, count, currentAverage, nextAverage);
-                isDescending = -1;
-                if (currentRangeLength > 1) {
-                    count--;
-                }
-                currentRangeLength = 0;
-            }
-        } else if (isDescending === false) {
-            if (currentAverage < nextAverage) {
-                count++;
-                // console.log('inside !isDescending block: ', window, count, currentAverage, nextAverage);
-                currentRangeLength++;
-            } else if (currentAverage > nextAverage) {
-
-                // console.log('switch to descent');
-                isDescending = true;
-                count--;
-                // console.log('inside !isDescending block switch to descent block: ', window, count, currentAverage, nextAverage);
-                if (currentRangeLength > 1) {
-                    count++;
-                }
-                currentRangeLength = 1;
-            } else if (currentAverage === nextAverage) {
-                // console.log('inside !isDescending switch to neutral block: ', window, count, currentAverage, nextAverage, i);
-                isDescending = -1;
-                if (currentRangeLength > 1) {
-                    count++;
-                }
-                currentRangeLength = 0;
-            }
-        } else if (isDescending === -1) {
-            if (currentAverage < nextAverage) {
-              isDescending = false;
-              count++;
-            } else if (currentAverage > nextAverage) {
-              isDescending = true;
-              count--;
-            }
+    if (isDescending === true) {
+      if (currentAverage > nextAverage) {
+        count--;
+        // console.log('inside isDescending block: ', window, count, currentAverage, nextAverage);
+        currentRangeLength++;
+      } else if (currentAverage < nextAverage) {
+        // console.log('switch to ascent');
+        isDescending = false;
+        count++;
+        // console.log('inside isDescending switch to ascent block: ', window, count, currentAverage, nextAverage, isDescending);
+        if (currentRangeLength > 1) {
+          count--;
         }
+        currentRangeLength = 1;
+      } else if (currentAverage === nextAverage) {
+        // console.log('inside isDescending switch to neutral block: ', window, count, currentAverage, nextAverage);
+        isDescending = -1;
+        if (currentRangeLength > 1) {
+          count--;
+        }
+        currentRangeLength = 0;
+      }
+    } else if (isDescending === false) {
+      if (currentAverage < nextAverage) {
+        count++;
+        // console.log('inside !isDescending block: ', window, count, currentAverage, nextAverage);
+        currentRangeLength++;
+      } else if (currentAverage > nextAverage) {
+
+        // console.log('switch to descent');
+        isDescending = true;
+        count--;
+        // console.log('inside !isDescending block switch to descent block: ', window, count, currentAverage, nextAverage);
+        if (currentRangeLength > 1) {
+            count++;
+        }
+        currentRangeLength = 1;
+      } else if (currentAverage === nextAverage) {
+        // console.log('inside !isDescending switch to neutral block: ', window, count, currentAverage, nextAverage, i);
+        isDescending = -1;
+        if (currentRangeLength > 1) {
+          count++;
+        }
+        currentRangeLength = 0;
+      }
+    } else if (isDescending === -1) {
+      if (currentAverage < nextAverage) {
+        isDescending = false;
+        count++;
+      } else if (currentAverage > nextAverage) {
+        isDescending = true;
+        count--;
+      }
     }
-    return count;
+  }
+  return count;
 };
 // keep track of:
   // sequence length

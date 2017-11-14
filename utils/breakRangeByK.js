@@ -1,7 +1,9 @@
-const breakRangeByK = (k, range) => {
+/* a utility function to break a given range of values into k-sized windows
+(O(n) time complexity) */
+const breakRangeByK = (n, k, range) => {
   const windows = [];
   let currentWindow = [];
-  for (let i = 0; i <= range.length; i++) {
+  for (let i = 0; i <= n; i++) {
     if (currentWindow.length === k) {
       windows.push(currentWindow);
       currentWindow = currentWindow.slice(1);

@@ -2,15 +2,18 @@ const processInputFile = require('./utils/processInputFile');
 const breakRangeByK = require('./utils/breakRangeByK');
 const getWindowIncreasingSubrangeCount = require('./utils/getWindowIncreasingSubrangeCount');
 
-const main = (inputFilePath) => {
-  processInputFile(inputFilePath, (n, k, range) => {
-    const windows = breakRangeByK(k, range);
+/* to run this program, enter node main.js ${requiredFilePath} from the project's root: */
+const inputPath = process.argv[2];
+
+const main = (filePath) => {
+  processInputFile(filePath, (n, k, range) => {
+    const windows = breakRangeByK(n, k, range);
     windows.forEach((window) => {
       const windowCount = getWindowIncreasingSubrangeCount(window);
-      windowCounts.push(windowCount);
       console.log(windowCount);
     });
   });
 };
 
-module.exports = main;
+// the main function runs, taking the given path as its input:
+main(inputPath);
