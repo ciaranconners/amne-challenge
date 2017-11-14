@@ -9,6 +9,8 @@ const filePathToWrite = process.argv[6];
 
 /**
 * @param {string} filePath
+* @param {number} min
+* @param {number} max
 */
 
 const generateTestInputFile = (filePath, min, max) => {
