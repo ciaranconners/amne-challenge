@@ -1,7 +1,6 @@
 /* a utility function which generates test input files with for a given n & k
   from the test-utils folder run node generateTestInputFile.js ${n} ${k} ${desiredTestFilePath}
 */
-
 const fs = require('fs');
 const getRandomInclusive = require('./getRandomIntInclusive');
 
@@ -11,7 +10,7 @@ const k = parseInt(process.argv[3], 10);
 const toWrite = [];
 
 for (let i = 0; i < n; i++) {
-  toWrite.push(getRandomInclusive(1, 50)); // push a random number to the array between
+  toWrite.push(getRandomInclusive(1, 100000)); // push a random number to the array between
 }
 
 const filePathToWrite = process.argv[4];

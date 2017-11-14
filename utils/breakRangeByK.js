@@ -1,5 +1,9 @@
 /* a utility function to break a given range of values into k-sized windows
 (O(n) time complexity) */
+
+// n = number
+// k = number
+// range = array
 const breakRangeByK = (n, k, range) => {
   const windows = [];
   let currentWindow = [];

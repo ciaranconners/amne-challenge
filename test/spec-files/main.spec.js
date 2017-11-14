@@ -19,7 +19,24 @@ describe('main', () => {
       done();
     }));
   });
-  it('can correctly process a large sample input (n = 200k) within the time constraints (10s) ("sample-input-5.txt")', (done) => {
+  it('can correctly process a large sample input (n = 200k) within the time constraints (10s) ("sample-input-3.txt")', (done) => {
+    const testFilePath = path.join(__dirname, '../test-input-files/sample-input-3.txt');
+    const startTime = Date.now();
+    mainTest(testFilePath, (() => {
+      const timeElapsed = Date.now() - startTime;
+      expect(timeElapsed < 100001).to.equal(true);
+      done();
+    }));
+  });
+  it('can correctly process another input with ties ("sample-input-4.txt")', (done) => {
+    const testFilePath = path.join(__dirname, '../test-input-files/sample-input-4.txt');
+    const expected = [-1, 1, 0, 1];
+    mainTest(testFilePath, ((windowCounts) => {
+      expect(expected).to.eql(windowCounts);
+      done();
+    }));
+  });
+  it('can correctly process another large sample input (n = 200k) within the time constraints (10s) ("sample-input-5.txt")', (done) => {
     const testFilePath = path.join(__dirname, '../test-input-files/sample-input-5.txt');
     const startTime = Date.now();
     mainTest(testFilePath, (() => {
