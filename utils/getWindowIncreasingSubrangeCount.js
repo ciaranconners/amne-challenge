@@ -1,6 +1,7 @@
-/* a utility function called by main for each k-length window
-to determine increasingSubrangeCount - decreasingSubrangeCount
-(O(window.length) time complexity) */
+/**
+* @param {array} window
+* @returns {number} The increasing subrange count - the decreasing subrange count for a given window
+*/
 
 const getWindowIncreasingSubrangeCount = (window) => {
   let count = 0;
@@ -12,23 +13,18 @@ const getWindowIncreasingSubrangeCount = (window) => {
   for (let i = 0; i <= window.length; i++) {
     const currentAverage = window[i];
     const nextAverage = window[i + 1];
-
     if (isDescending === true) {
       if (currentAverage > nextAverage) {
         count--;
-        // console.log('inside isDescending block: ', window, count, currentAverage, nextAverage);
         currentRangeLength++;
       } else if (currentAverage < nextAverage) {
-        // console.log('switch to ascent');
         isDescending = false;
         count++;
-        // console.log('inside isDescending switch to ascent block: ', window, count, currentAverage, nextAverage, isDescending);
         if (currentRangeLength > 1) {
           count--;
         }
         currentRangeLength = 1;
       } else if (currentAverage === nextAverage) {
-        // console.log('inside isDescending switch to neutral block: ', window, count, currentAverage, nextAverage);
         isDescending = -1;
         if (currentRangeLength > 1) {
           count--;
@@ -38,20 +34,15 @@ const getWindowIncreasingSubrangeCount = (window) => {
     } else if (isDescending === false) {
       if (currentAverage < nextAverage) {
         count++;
-        // console.log('inside !isDescending block: ', window, count, currentAverage, nextAverage);
         currentRangeLength++;
       } else if (currentAverage > nextAverage) {
-
-        // console.log('switch to descent');
         isDescending = true;
         count--;
-        // console.log('inside !isDescending block switch to descent block: ', window, count, currentAverage, nextAverage);
         if (currentRangeLength > 1) {
-            count++;
+          count++;
         }
         currentRangeLength = 1;
       } else if (currentAverage === nextAverage) {
-        // console.log('inside !isDescending switch to neutral block: ', window, count, currentAverage, nextAverage, i);
         isDescending = -1;
         if (currentRangeLength > 1) {
           count++;
@@ -70,14 +61,5 @@ const getWindowIncreasingSubrangeCount = (window) => {
   }
   return count;
 };
-// keep track of:
-  // sequence length
-  // whether or not sequence isDescending (bool)
-
-  // each iteration sequence does not change:
-    // add or subtract per isDescending
-
-  // when the sequence changes per isDescending:
-    // if sequence length > 1, we add or subtract another 1 for the sequence as a whole
 
 module.exports = getWindowIncreasingSubrangeCount;

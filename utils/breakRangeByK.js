@@ -1,9 +1,10 @@
-/* a utility function to break a given range of values into k-sized windows
-(O(n) time complexity) */
+/**
+* @param {number} n
+* @param {number} k
+* @param {array} range
+* @returns {array} an array of k-length windows
+*/
 
-// n = number
-// k = number
-// range = array
 const breakRangeByK = (n, k, range) => {
   const windows = [];
   let currentWindow = [];

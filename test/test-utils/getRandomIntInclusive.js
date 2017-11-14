@@ -1,3 +1,9 @@
+/**
+* @param {number} min
+* @param {number} max
+* @returns {number} a random number between min & max, inclusive
+*/
+
 const getRandomIntInclusive = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);

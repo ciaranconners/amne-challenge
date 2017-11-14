@@ -45,4 +45,13 @@ describe('main', () => {
       done();
     }));
   });
+  it('can correctly process a large sample input (n = 200k) with a large k value (k = 200) within the time constraints (10s) ("sample-input-6.txt")', (done) => {
+    const testFilePath = path.join(__dirname, '../test-input-files/sample-input-6.txt');
+    const startTime = Date.now();
+    mainTest(testFilePath, (() => {
+      const timeElapsed = Date.now() - startTime;
+      expect(timeElapsed < 100001).to.equal(true);
+      done();
+    }));
+  });
 });
