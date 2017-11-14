@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const mainTest = require('../main-test-function.js');
+const mainTest = require('../main-test-function');
 const path = require('path');
 
 describe('main', () => {
